@@ -12,10 +12,19 @@ Some text
  For more information, see <https://marketplace.visualstudio.com/items?itemName=humao.rest-client>.
 
 ````text
-POST http://localhost:9000/message HTTP/1.1
+POST http://localhost:9000/send-message HTTP/1.1
 content-type: application/json
 
 {
-    "messageContent": "Sample message content"
+    "messageContent": "For all Sample message content"
+}
+````text
+
+````text
+POST http://localhost:9000/send-private-message/0477a937-5cc3-4e62-a4de-c6c58094b061 HTTP/1.1
+content-type: application/json
+
+{
+    "messageContent": "For user Sample message content"
 }
 ````text
