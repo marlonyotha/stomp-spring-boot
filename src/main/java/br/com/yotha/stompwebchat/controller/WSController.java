@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.yotha.stompwebchat.dto.Message;
-import br.com.yotha.stompwebchat.service.WSService;
+import br.com.yotha.stompwebchat.service.WebSocketService;
 
 @RestController
 public class WSController {
 
 	@Autowired
-	private WSService service;
+	private WebSocketService webSocketService;
 
 	@PostMapping("/send-message")
 	public void sendMessage(@RequestBody final Message message) {
-		service.notifyFrontend(message.getMessageContent());
+		webSocketService.notifyFrontend(message.getMessageContent());
 	}
 
 	@PostMapping("/send-private-message/{id}")
 	public void sendPrivateMessage(@PathVariable final String id, @RequestBody final Message message) {
-		service.notifyUser(id, message.getMessageContent());
+		webSocketService.notifyUser(id, message.getMessageContent());
 	}
 }

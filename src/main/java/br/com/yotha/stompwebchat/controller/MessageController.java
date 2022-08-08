@@ -3,6 +3,7 @@ package br.com.yotha.stompwebchat.controller;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.annotation.SendToUser;
@@ -20,19 +21,23 @@ public class MessageController {
 
 	@MessageMapping("/message")
 	@SendTo("/topic/messages")
-	public ResponseMessage getMessage(final Message message) throws InterruptedException {
-		Thread.sleep(1000);
+	public ResponseMessage getMessage(final Message message) {
 		notificationService.sendGlobalNotification();
 		return new ResponseMessage(HtmlUtils.htmlEscape(message.getMessageContent()));
 	}
 
 	@MessageMapping("/private-message")
 	@SendToUser("/topic/private-messages")
-	public ResponseMessage getPrivateMessage(final Message message, final Principal principal)
-			throws InterruptedException {
-		Thread.sleep(1000);
-		notificationService.sendPrivateNotification(principal.getName());
+	public ResponseMessage getPrivateMessage(final Message message, final Principal principal) {
+		String userId = principal == null ? "" : principal.getName();
+		notificationService.sendPrivateNotification(userId);
 		return new ResponseMessage(HtmlUtils.htmlEscape(
-				"Sending private message to user " + principal.getName() + ": " + message.getMessageContent()));
+				"Sending private message to user " + userId + ": " + message.getMessageContent()));
+	}
+
+	@MessageExceptionHandler
+	@SendToUser("/topic/errors")
+	public String handleException(Throwable exception) {
+		return exception.getMessage();
 	}
 }
