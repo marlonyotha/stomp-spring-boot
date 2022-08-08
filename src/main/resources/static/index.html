@@ -19,40 +19,67 @@
     <div class="container" style="margin-top: 50px">
       <div class="row">
         <div class="col-md-12">
+          <div class="form-group">
+            <label for="user-name">User Name</label>
+            <input type="text" id="user-name" class="form-control" disabled />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
           <form class="form-inline">
             <div class="form-group">
-              <label for="message">Message</label>
-              <input
-                type="text"
-                id="message"
-                class="form-control"
-                placeholder="Enter your message here..."
-              />
+              <label for="message">Broadcast Message</label>
+              <input type="text" id="message" class="form-control" />
             </div>
-            <button id="send" class="btn btn-default" type="button">
-              Send
+            <button id="send" class="btn btn-primary" type="button">
+              Send Broadcast
             </button>
           </form>
         </div>
       </div>
+      <hr />
       <div class="row" style="margin-top: 10px">
         <div class="col-md-12">
           <form class="form-inline">
             <div class="form-group">
-              <label for="private-message">Private Message</label>
-              <input
-                type="text"
-                id="private-message"
-                class="form-control"
-                placeholder="Enter your message here..."
-              />
+              <label for="self-message">Self Message (Current session)</label>
+              <input type="text" id="self-message" class="form-control" />
             </div>
-            <button id="send-private" class="btn btn-default" type="button">
-              Send Private Message
+            <button id="send-self" class="btn btn-primary" type="button">
+              Send Self Message
             </button>
           </form>
         </div>
       </div>
+
+
+      <hr />
+      <div class="row" style="margin-top: 10px">
+        <div class="col-md-12">
+          <form class="form-inline">
+
+            <div class="form-group">
+              <label for="to-user-name">To user name</label>
+              <input
+                type="text"
+                id="to-user-name"
+                class="form-control"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="user-message">User Message</label>
+              <input type="text" id="user-message" class="form-control" />
+            </div>
+            <button id="send-user" class="btn btn-primary" type="button">
+              Send to user Message
+            </button>
+          </form>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-md-12">
           <table id="message-history" class="table table-striped">

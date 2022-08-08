@@ -9,8 +9,12 @@ $(document).ready(function () {
     sendMessage();
   });
 
-  $("#send-private").click(function () {
-    sendPrivateMessage();
+  $("#send-self").click(function () {
+    sendSelfMessage();
+  });
+
+  $("#send-user").click(function () {
+    sendUserMessage();
   });
 
   $("#notifications").click(function () {
@@ -22,6 +26,8 @@ function connect() {
   let socket = new SockJS("/connect");
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function (frame) {
+    let userName = frame.headers["user-name"];
+    $("#user-name").val(userName);
     console.log("Connected: " + frame);
 
     updateNotificationDisplay();
@@ -62,12 +68,32 @@ function sendMessage() {
   );
 }
 
-function sendPrivateMessage() {
+function sendSelfMessage() {
   console.log("sending private message");
   stompClient.send(
     "/app/private-message",
     {},
     JSON.stringify({ messageContent: $("#private-message").val() })
+  );
+}
+
+function sendUserMessage() {
+  let userId = $("#to-user-name").val();
+
+  fetch("/send-private-message/" + userId, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messageContent: $("#user-message").val() }),
+  }).then((res) => {
+    console.log("Request complete! response:", res);
+  });
+
+  console.log("sending to user message");
+
+  stompClient.send(
+    "/app/private-message/" + userId,
+    {},
+    JSON.stringify({ messageContent: $("#user-message").val() })
   );
 }
 
