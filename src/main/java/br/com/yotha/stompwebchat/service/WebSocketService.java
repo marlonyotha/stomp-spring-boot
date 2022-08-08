@@ -16,7 +16,7 @@ public class WebSocketService {
 		this.notificationService = notificationService;
 	}
 
-	public void notifyFrontend(final String message) {
+	public void notifyAll(final String message) {
 		ResponseMessage response = new ResponseMessage(message);
 		notificationService.sendGlobalNotification();
 		messagingTemplate.convertAndSend("/topic/messages", response);

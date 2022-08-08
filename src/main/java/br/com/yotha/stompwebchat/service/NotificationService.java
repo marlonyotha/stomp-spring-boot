@@ -1,7 +1,6 @@
 package br.com.yotha.stompwebchat.service;
 
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import br.com.yotha.stompwebchat.dto.ResponseMessage;
@@ -12,11 +11,6 @@ public class NotificationService {
 
 	public NotificationService(SimpMessagingTemplate messagingTemplate) {
 		this.messagingTemplate = messagingTemplate;
-	}
-
-	@Scheduled(fixedDelay = 1000)
-	private void broadCastTest() {
-		//sendGlobalNotification();
 	}
 
 	public void sendGlobalNotification() {

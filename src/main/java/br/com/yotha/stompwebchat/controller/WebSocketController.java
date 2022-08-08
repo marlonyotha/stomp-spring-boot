@@ -10,14 +10,14 @@ import br.com.yotha.stompwebchat.dto.Message;
 import br.com.yotha.stompwebchat.service.WebSocketService;
 
 @RestController
-public class WSController {
+public class WebSocketController {
 
 	@Autowired
 	private WebSocketService webSocketService;
 
 	@PostMapping("/send-message")
 	public void sendMessage(@RequestBody final Message message) {
-		webSocketService.notifyFrontend(message.getMessageContent());
+		webSocketService.notifyAll(message.getMessageContent());
 	}
 
 	@PostMapping("/send-private-message/{id}")
