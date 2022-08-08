@@ -1,6 +1,5 @@
 package br.com.yotha.stompwebchat.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,6 @@ import br.com.yotha.stompwebchat.dto.ResponseMessage;
 public class NotificationService {
 	private final SimpMessagingTemplate messagingTemplate;
 
-	@Autowired
 	public NotificationService(SimpMessagingTemplate messagingTemplate) {
 		this.messagingTemplate = messagingTemplate;
 	}

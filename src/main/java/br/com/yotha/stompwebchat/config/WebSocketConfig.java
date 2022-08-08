@@ -21,3 +21,4 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 		registry.addEndpoint("/our-websocket").setHandshakeHandler(new UserHandshakeHandler()).withSockJS();
 	}
 }
+	
