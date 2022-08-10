@@ -10,8 +10,8 @@ import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
 
-import br.com.yotha.stompwebchat.dto.Message;
-import br.com.yotha.stompwebchat.dto.ResponseMessage;
+import br.com.yotha.stompwebchat.model.Message;
+import br.com.yotha.stompwebchat.model.ResponseMessage;
 import br.com.yotha.stompwebchat.service.NotificationService;
 
 @Controller

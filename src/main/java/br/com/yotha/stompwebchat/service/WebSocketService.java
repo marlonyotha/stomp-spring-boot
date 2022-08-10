@@ -3,7 +3,8 @@ package br.com.yotha.stompwebchat.service;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import br.com.yotha.stompwebchat.dto.ResponseMessage;
+import br.com.yotha.stompwebchat.model.ResponseMessage;
+
 
 @Service
 public class WebSocketService {

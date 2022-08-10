@@ -1,4 +1,4 @@
-package br.com.yotha.stompwebchat.dto;
+package br.com.yotha.stompwebchat.model;
 
 public class Message {
 	private String messageContent;
